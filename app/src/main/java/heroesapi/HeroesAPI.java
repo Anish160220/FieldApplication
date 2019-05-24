@@ -5,6 +5,7 @@ import java.util.Map;
 
 import model.Heroes;
 import model.ImageResponse;
+import model.LoginSignupResponse;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -28,4 +29,12 @@ public interface HeroesAPI {
 
     @GET("heroes")
    Call<List<Heroes>> getAllHeroes();
+
+    @FormUrlEncoded
+    @POST("users/login")
+    Call<LoginSignupResponse> checkUser(@Field("username") String username,@Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("users/signup")
+    Call<LoginSignupResponse> registerUser(@Field("username") String username,@Field("password") String password);
 }

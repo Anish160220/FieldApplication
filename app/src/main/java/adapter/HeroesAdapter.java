@@ -49,15 +49,17 @@ public class HeroesAdapter extends RecyclerView.Adapter<HeroesAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
        Heroes heroes = heroesList.get(i);
-        String imgPath = Url.BASE_URL + "/uploads" + heroes.getImage();
+        String imgPath = Url.BASE_URL + "uploads/" + heroes.getImage();
         StrictMode();
+
 
         try {
             URL url = new URL(imgPath);
             viewHolder.imgPhoto.setImageBitmap(BitmapFactory.decodeStream((InputStream)url.getContent()));
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
         viewHolder.tvName.setText(heroes.getName());
         viewHolder.tvDesc.setText(heroes.getDesc());
 

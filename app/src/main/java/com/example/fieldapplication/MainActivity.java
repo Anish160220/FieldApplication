@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,HeroesActivity.class);
                 startActivity(intent);
             }
+
         });
         btnSave.setOnClickListener(new View.OnClickListener() {
                                        @Override
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
-    private void previewImage(String imagepath) {
+    private void previewImage(String imageath) {
 
         File imgFlie = new File(imagepath);
         if(imgFlie.exists()){
