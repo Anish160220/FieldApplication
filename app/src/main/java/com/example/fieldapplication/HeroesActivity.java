@@ -15,8 +15,6 @@ import model.Heroes;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import url.Url;
 
 public class HeroesActivity extends AppCompatActivity {
@@ -31,7 +29,7 @@ public class HeroesActivity extends AppCompatActivity {
 
         HeroesAPI heroesAPI = Url.getInstance().create(HeroesAPI.class);
 
-         Call<List<Heroes>> listCall = heroesAPI.getAllHeroes();
+         Call<List<Heroes>> listCall = heroesAPI.getAllHeroes(Url.Cookie);
         listCall.enqueue(new Callback<List<Heroes>>() {
             @Override
             public void onResponse(Call<List<Heroes>> call, Response<List<Heroes>> response) {

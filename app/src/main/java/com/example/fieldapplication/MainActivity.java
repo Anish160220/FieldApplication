@@ -92,10 +92,10 @@ public class MainActivity extends AppCompatActivity {
         }
         Uri uri = data.getData();
         imagepath = getRealPathFromUri(uri);
-         previewImage(imagepath);
+         previewImage(imagepath); //after getting imagepath display it in imageview
     }
 
-    private String getRealPathFromUri(Uri uri) {
+    private String getRealPathFromUri(Uri uri) { //this function will return the image path
         String[] projection = {MediaStore.Images.Media.DATA};
         CursorLoader loader = new CursorLoader(getApplicationContext(), uri, projection,null,null,null);
         Cursor cursor = loader.loadInBackground();
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         MultipartBody.Part body = MultipartBody.Part.createFormData("imageFile",file.getName(),requestBody);
 
         HeroesAPI heroesAPI = Url.getInstance().create(HeroesAPI.class);
-        Call<ImageResponse> responseBodyCall = heroesAPI.uploadImage(body);
+        Call<ImageResponse> responseBodyCall = heroesAPI.uploadImage(Url.Cookie,body);
 
         StrictMode();
 
@@ -163,7 +163,7 @@ private void StrictMode(){
 
         HeroesAPI heroesAPI = retrofit.create(HeroesAPI.class);
 
-        Call<Void> heroesCall = heroesAPI.addHero(name,desc,image);
+        Call<Void> heroesCall = heroesAPI.addHero(Url.Cookie,name,desc,image);
 
         heroesCall.enqueue(new Callback<Void>() {
             @Override

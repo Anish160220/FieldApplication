@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         String username = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
+
         Call<LoginSignupResponse> userCall = heroesAPI.checkUser(username,password);
 
         userCall.enqueue(new Callback<LoginSignupResponse>() {
@@ -52,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else{
                     if (response.body().getSuccess()){
+                        Url.Cookie = response.headers().get("Set-Cookie"); //Get the cookie from response.header
                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                         startActivity(intent);
                         finish();
@@ -62,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginSignupResponse> call, Throwable t) {
+
                 Toast.makeText(LoginActivity.this,"Error : " + t.getLocalizedMessage(),Toast.LENGTH_LONG).show();
             }
         });
